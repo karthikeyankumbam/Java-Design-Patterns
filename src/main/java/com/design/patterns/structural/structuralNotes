@@ -1,0 +1,4 @@
+
+
+We will use Adapter Design pattern to make two incomapatible code bases work with each other.
+1st is our code and second is library
