@@ -3,12 +3,15 @@ package com.design.patterns.multithreading;
 import java.math.BigInteger;
 
 public class ThreadCoordination {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        Thread task = new Thread(new  BlockingTask());
 //        task.start();
 //        task.interrupt();
+
         Thread thread = new Thread(new LongComputationalTask(new BigInteger("2000000"), new BigInteger("1000000")));
+        thread.setDaemon(true);
         thread.start();
+        Thread.sleep(100);
         thread.interrupt();
     }
     private static  class BlockingTask implements Runnable{
@@ -38,10 +41,10 @@ public class ThreadCoordination {
         private BigInteger pow(BigInteger base, BigInteger power){
             BigInteger result=BigInteger.ONE;
             for(BigInteger i=BigInteger.ZERO;i.compareTo(power)!=0;i=i.add(BigInteger.ONE)){
-                if(Thread.currentThread().isInterrupted()){
-                    System.out.println("Prematurely Interrupted Communication");
-                    return BigInteger.ZERO;
-                }
+//                if(Thread.currentThread().isInterrupted()){
+//                    System.out.println("Prematurely Interrupted Communication");
+//                    return BigInteger.ZERO;
+//                }
                 result = result.multiply(base);
             }
             return result;
