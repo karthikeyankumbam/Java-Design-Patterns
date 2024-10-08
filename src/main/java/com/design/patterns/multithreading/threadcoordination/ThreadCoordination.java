@@ -1,4 +1,4 @@
-package com.design.patterns.multithreading;
+package com.design.patterns.multithreading.threadcoordination;
 
 import java.math.BigInteger;
 
